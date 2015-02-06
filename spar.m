@@ -1,27 +1,19 @@
 function dpop = spar(t,pop,params)
 
-% Need vector here for ode solver... 
-%   but confusing if pop is vector, params is struct
+% Vector of population data
 S = pop(1);
 P = pop(2);
 A = pop(3);
 R = pop(4);
 
-gamma = params.gamma;
-alpha = params.alpha;
-beta = params.beta;
-mu = params.mu;
-b = params.b;
-d = params.d;
+% A struct of parameter configurations
+p = params;
 
-
-Sn = -beta*S*(P+A) - mu*S  + b;
-
-Pn = beta*S*(P+A) - P*( gamma + alpha + mu);
-
-An = alpha*P - d*A;
-
-Rn = gamma*P - mu*R;
+% Step forward in our model
+Sn = -p.beta*S*(P+A) - p.mu*S + p.b;
+Pn = p.beta*S*(P+A) - P*( p.gamma + p.alpha + p.mu);
+An = p.alpha*P - p.d*A;
+Rn = p.gamma*P - p.mu*R;
 
 dpop = [Sn; Pn; An; Rn];
 
