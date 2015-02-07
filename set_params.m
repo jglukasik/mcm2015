@@ -1,4 +1,4 @@
-function [params] = set_params(beta, mu, gamma, alpha, b, d)
+function [params] = set_params(beta, mu, gamma, c, b, d)
 
 params = struct('beta',   beta,  ... % transmission rate
                 'mu',     mu,    ... % natural death rate
