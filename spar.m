@@ -5,11 +5,13 @@ S = pop(1);
 P = pop(2);
 A = pop(3);
 R = pop(4);
+D = pop(5);
 
 % A struct of parameter configurations
 p = params;
 
-% Step forward in our model
+% Gamma will be dependent on P. Let's assume its linear for now
+p.gamma = P/2;
 
 % The suspects will decrease as they become sick
 Sn = -p.beta*S*(P+A);
@@ -23,8 +25,11 @@ Pn = p.beta*S*(P+A) - p.gamma - p.c*(1 - p.gamma/P)*P;
 An = p.c*(1 - p.gamma/P)*P - p.d*A;
 
 % The pool of people removed from spreading/catching disease increases
-% as people are killed by the disease, and are cured of the disease.
-Rn = p.d*A + p.gamma;
+% as are cured of the disease.
+Rn = p.gamma;
 
-dpop = [Sn; Pn; An; Rn];
+% The pool of people that died
+Dn = p.d*A;
+
+dpop = [Sn; Pn; An; Rn; Dn];
 

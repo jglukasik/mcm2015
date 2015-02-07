@@ -4,7 +4,7 @@ options = odeset('RelTol', 1e-4, 'NonNegative', [1 2 3 4]);
 [t,pop] = ode45(@(t,pop) spar(t,pop,params), [0 102], pop0, options);
 
 P1 = plot(t,pop,t,sum(pop,2));
-legend('S','P','A','R','total');
+legend('S','P','A','R','D','total');
 
 % Find the number of the last file
 files = dir('figures');
@@ -17,7 +17,7 @@ saveas(gcf, plot_name);
 
 file_name = strcat('figures/fig', file_num, '.txt');
 fileID = fopen(file_name, 'w');
-fprintf(fileID, 'Initial S, P, A, R values\n');
+fprintf(fileID, 'Initial S, P, A, R, D values\n');
 fprintf(fileID, '%16f\n', pop0);
 fprintf(fileID, '\nParameters\n');
 fprintf(fileID, 'beta\t%16f\n',   params.beta);
