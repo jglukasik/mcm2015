@@ -9,17 +9,22 @@ R = pop(4);
 % A struct of parameter configurations
 p = params;
 
-% calclulate alpha, the disease progression with medicine taken into account
-alpha = p.c * (1-p.gamma/P);
-
 % Step forward in our model
-Sn = -p.beta*S*(P+A) - p.mu*S + p.b*(S+R);
 
-Pn = p.beta*S*(P+A) - P*( alpha + p.mu ) - p.gamma;
+% The suspects will decrease as they become sick
+Sn = -p.beta*S*(P+A);
 
-An = alpha*P - p.d*A;
+% The primary stage sick people will grow as healthy get sick,
+% and decrease as the sick are cured, or their disease advances
+Pn = p.beta*S*(P+A) - p.gamma - p.c*(1 - p.gamma/P)*P;
 
-Rn = p.gamma - p.mu*R;
+% The advanced stage sick people will increase as the primary stage 
+% people advance, and decreases as the sick die out
+An = p.c*(1 - p.gamma/P)*P - p.d*A;
+
+% The pool of people removed from spreading/catching disease increases
+% as people are killed by the disease, and are cured of the disease.
+Rn = p.d*A + p.gamma;
 
 dpop = [Sn; Pn; An; Rn];
 

@@ -1,9 +1,7 @@
-function [params] = set_params(beta, mu, gamma, c, b, d)
+function [params] = set_params(beta, gamma, c, d)
 
 params = struct('beta',   beta,  ... % transmission rate
-                'mu',     mu,    ... % natural death rate
                 'gamma',  gamma, ... % recovery rate
                 'c',      c,     ... % natural disease progression rate
-                'b',      b,     ... % birth rate
                 'd',      d);        % ebola death rate
 
