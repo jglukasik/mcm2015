@@ -11,22 +11,22 @@ D = pop(5);
 p = params;
 
 % Gamma will be dependent on P. Let's assume its linear for now
-p.gamma = P/2;
+gamma = P^(p.exponent);
 
 % The suspects will decrease as they become sick
 Sn = -p.beta*S*(P+A);
 
 % The primary stage sick people will grow as healthy get sick,
 % and decrease as the sick are cured, or their disease advances
-Pn = p.beta*S*(P+A) - p.gamma - p.c*(1 - p.gamma/P)*P;
+Pn = p.beta*S*(P+A) - gamma - p.c*(1 - gamma/P)*P;
 
 % The advanced stage sick people will increase as the primary stage 
 % people advance, and decreases as the sick die out
-An = p.c*(1 - p.gamma/P)*P - p.d*A;
+An = p.c*(1 - gamma/P)*P - p.d*A;
 
 % The pool of people removed from spreading/catching disease increases
 % as are cured of the disease.
-Rn = p.gamma;
+Rn = gamma;
 
 % The pool of people that died
 Dn = p.d*A;
