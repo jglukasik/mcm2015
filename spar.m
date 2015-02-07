@@ -9,12 +9,15 @@ R = pop(4);
 % A struct of parameter configurations
 p = params;
 
+% calclulate alpha, the disease progression with medicine taken into account
+alpha = p.c * (1-p.gamma/P);
+
 % Step forward in our model
 Sn = -p.beta*S*(P+A) - p.mu*S + p.b*(S+R);
 
-Pn = p.beta*S*(P+A) - P*( p.alpha + p.mu ) - p.gamma;
+Pn = p.beta*S*(P+A) - P*( alpha + p.mu ) - p.gamma;
 
-An = p.alpha*P - p.d*A;
+An = alpha*P - p.d*A;
 
 Rn = p.gamma - p.mu*R;
 

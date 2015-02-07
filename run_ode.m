@@ -23,7 +23,7 @@ fprintf(fileID, '\nParameters\n');
 fprintf(fileID, 'beta\t%16f\n',   params.beta);
 fprintf(fileID, 'mu\t%16f\n',     params.mu);
 fprintf(fileID, 'gamma\t%16f\n',  params.gamma);
-fprintf(fileID, 'alpha\t%16f\n',  params.alpha);
+fprintf(fileID, 'c\t%16f\n',      params.c);
 fprintf(fileID, 'b\t%16f\n',      params.b);
 fprintf(fileID, 'd\t%16f\n',      params.d);
 fclose(fileID);
