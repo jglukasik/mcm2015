@@ -10,9 +10,12 @@ R = pop(4);
 p = params;
 
 % Step forward in our model
-Sn = -p.beta*S*(P+A) - p.mu*S + p.b;
-Pn = p.beta*S*(P+A) - P*( p.gamma + p.alpha + p.mu);
+Sn = -p.beta*S*(P+A) - p.mu*S + p.b*(S+R);
+
+Pn = p.beta*S*(P+A) - P*( p.gamma + p.alpha + p.mu );
+
 An = p.alpha*P - p.d*A;
+
 Rn = p.gamma*P - p.mu*R;
 
 dpop = [Sn; Pn; An; Rn];
