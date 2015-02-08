@@ -1,4 +1,4 @@
-function [dists,prev] = dijkstra(graph, start)
+function [dists,paths] = dijkstra(graph, start)
 
 % Assume square matrix graph
 n = length(graph);
@@ -41,6 +41,19 @@ while (length(unvisited) ~= 0)
       prev(v) = u;
     end
 
+  end
+end
+
+% Return the paths to get to each node, not just the node before it
+paths = cell(n,1);
+
+for u = [1:n]
+  % Not necessary to make copy due to matlab's immutable loop var's
+  % but doing it anyway for clarity's sake
+  v = u;
+  while (prev(v) ~= 0)
+    paths{u} = [v paths{u}];
+    v = prev(v);
   end
 end
 
