@@ -9,8 +9,18 @@ nodes = make_nodes();
 total_costs = static_costs(end_time, gamma_total);
 
 % Get the minimum cost, and the city associated with it
-[min_cost, city_idx] = min( total_costs );
+[min_cost, min_idx] = min( total_costs );
 
 % Print results to screen
-nodes(city_idx).name
+nodes(min_idx).name
 min_cost  % in millions
+
+file_name = 'results/static.txt';
+fileID = fopen(file_name, 'w');
+
+for n = [1:length(nodes)]
+  fprintf(fileID,'%s\t%f\n', nodes(n).name, total_costs(n));
+end
+
+fprintf(fileID,'\nThe best starting city is %s with a cost of %f', nodes(min_idx).name, min_cost);
+fclose(fileID);

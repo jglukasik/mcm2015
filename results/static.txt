@@ -1,0 +1,8 @@
+conarky	0.327326
+freetown	0.218379
+monrovia	0.182163
+kankan	0.447252
+koidu	0.245778
+gbarnga	0.306858
+
+The best starting city is monrovia with a cost of 0.182163
