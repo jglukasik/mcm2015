@@ -42,4 +42,4 @@ kankan.params = set_params(0.0246, 1/3, 1/2);
 % -----------------------------------------------------------------------
 
 % Use our cities as nodes
-nodes = {conarky freetown monrovia kankan koidu gbarnga};
+nodes = [conarky freetown monrovia kankan koidu gbarnga];
