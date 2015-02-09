@@ -10,15 +10,18 @@ D = pop(5);
 % A struct of parameter configurations
 p = params;
 
+% Seasonal forcing parameter
+sf = (1 + 1*cos(2*pi*t));
+
 % Gamma will be dependent on P. Let's assume its linear for now
 gamma = min(p.gamma, P);
 
 % The suspects will decrease as they become sick
-Sn = -p.beta*S*(P+A);
+Sn = -p.beta*S*(P+A)*sf;
 
 % The primary stage sick people will grow as healthy get sick,
 % and decrease as the sick are cured, or their disease advances
-Pn = p.beta*S*(P+A) - gamma - p.c*(P - gamma);
+Pn = p.beta*S*(P+A)*sf - gamma - p.c*(P - gamma);
 
 % The advanced stage sick people will increase as the primary stage 
 % people advance, and decreases as the sick die out

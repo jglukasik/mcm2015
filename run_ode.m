@@ -1,13 +1,17 @@
 % Do we want to enforce P to be nonnegative? What if we have more medicine than sick people?
 options = odeset('RelTol', 1e-4, 'NonNegative', [1 2 3 4]);
 
-[t,pop] = ode45(@(t,pop) spar(t,pop,params), [0 102], pop0, options);
+[t,pop] = ode45(@(t,pop) spar(t,pop,params), [0 52], pop0, options);
 
 P1 = plot(t,pop,t,sum(pop,2));
 legend('S','P','A','R','D','total');
 
+% Plot without S, total
+%P1 = plot(t,pop(:,2:end));
+%legend('P','A','R','D');
+
 % Find the number of the last file
-files = dir('figures');
+files = dir('figures/fig*');
 m = regexp(files(end).name, ['\d+'], 'match'); 
 file_num = sprintf('%04d', str2num(m{1}) + 1);
 
