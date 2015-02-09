@@ -31,8 +31,6 @@ for n = [1:length(nodes)]
   nodes(n).params.gamma = nodes(n).gammas(1);
 end
 
-% DO TRANSPORTATION MATRIX STUFF
-
 % We will step forward one week at a time
 for t = [2:end_time+1]
 
